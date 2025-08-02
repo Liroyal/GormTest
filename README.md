@@ -67,3 +67,44 @@ To change any configuration values:
 3. Run `make stop` and `make start` to apply changes
 
 This approach ensures all configuration is centralized and easy to maintain.
+
+## API Usage
+
+### Getting Started
+
+1. **Start the database:**
+   ```bash
+   make start
+   ```
+
+2. **Apply database migrations:**
+   ```bash
+   make migrate-up
+   ```
+
+3. **Run the API server:**
+   ```bash
+   go run main.go
+   ```
+
+### Example API Usage
+
+**Create a new employee:**
+```bash
+curl -X POST http://localhost:8080/employees \
+  -H "Content-Type: application/json" \
+  -d '{"first_name":"Ada","last_name":"Lovelace"}'
+```
+
+**Expected response:**
+```json
+{
+  "id": 1,
+  "first_name": "Ada",
+  "last_name": "Lovelace",
+  "created_at": "2024-01-15T10:30:00Z",
+  "updated_at": "2024-01-15T10:30:00Z"
+}
+```
+
+The API will return a JSON response containing the created employee record with an auto-generated `id` field.

@@ -24,7 +24,7 @@ DB_PASSWORD = 1234
 DB_NAME = appdb
 
 # Example targets using the constants above
-.PHONY: help start stop logs connect db-up db-down db-logs psql
+.PHONY: help start stop logs connect db-up db-down db-logs psql migrate-up migrate-down migrate-create
 
 help: ## Show this help message
 	@echo "PostgreSQL Docker Management"
@@ -80,3 +80,18 @@ db-logs: ## Follow container logs
 
 psql: ## Open interactive psql inside the container
 	docker exec -it $(CONTAINER) psql -U $(USER) -d postgres
+
+# =============================================================================
+# Database Migration Targets
+# =============================================================================
+
+MIGRATE = migrate -path migrations -database "postgresql://admin:1234@localhost:5439/appdb?sslmode=disable"
+
+migrate-up: ## Apply all migrations
+	$(MIGRATE) up
+
+migrate-down: ## Roll back last migration
+	$(MIGRATE) down 1
+
+migrate-create: ## NAME=<name>
+	migrate create -ext sql -dir migrations -seq $(NAME)
