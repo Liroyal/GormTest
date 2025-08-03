@@ -1,1 +1,55 @@
+# Binaries and executables
 gormtest
+bin/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Build artifacts
+dist/
+build/
+target/
+
+# Logs and runtime files
+logs/
+*.log
+*.pid
+.api.pid
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE and editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Environment and configuration
+.env
+.env.local
+.env.*.local
+
+# Test coverage
+coverage.txt
+coverage.html
+*.out
+
+# Go specific
+vendor/
+*.test
